@@ -7,13 +7,7 @@ var whitelist = [
   "http://192.168.43.163:3000",
 ];
 var corsConfig = {
-  origin: function (origin: any, callback: any) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: "*",
   credentials: true,
 };
 

@@ -3,6 +3,7 @@ npm-debug.log
 .DS_Store
 /*.env
 
+/dist
 /.vscode
 
 init.js

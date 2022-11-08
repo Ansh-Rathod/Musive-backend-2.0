@@ -1,4 +1,4 @@
-const errorHandler = (err: any, req: any, res: any, next: any) => {
+const errorHandler = (err, req, res, next) => {
   let error = { ...err };
 
   error.message = err.message;

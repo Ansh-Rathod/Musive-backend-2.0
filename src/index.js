@@ -2,11 +2,11 @@ import express from "express";
 import { createServer } from "http";
 import dotenv from "dotenv";
 import "dotenv/config";
-import authRoute from "./routes/authRouter";
-import songsRoute from "./routes/songs";
-import { corsConfig } from "./middlewares/session";
-import errorHandler from "./middlewares/error-handler";
-import artistsRoute from "./routes/artists";
+import authRoute from "./routes/authRouter.js";
+import songsRoute from "./routes/songsRouter.js";
+import { corsConfig } from "./middlewares/session.js";
+import errorHandler from "./middlewares/error-handler.js";
+import artistsRoute from "./routes/artists.js";
 import helmet from "helmet";
 import cors from "cors";
 

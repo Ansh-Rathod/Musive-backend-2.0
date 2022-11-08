@@ -1,5 +1,5 @@
 import express from "express";
-import { getRandomSongs } from "../controllers/songs/getRandomSongs";
+import { getRandomSongs } from "../controllers/songs/getRandomSongs.js";
 
 const router = express.Router();
 

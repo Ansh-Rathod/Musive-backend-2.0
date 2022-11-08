@@ -2,7 +2,7 @@ import express from "express";
 import {
   getArtistById,
   getRandomArtists,
-} from "../controllers/artists/getArtistsController";
+} from "../controllers/artists/getArtistsController.js";
 
 const router = express.Router();
 

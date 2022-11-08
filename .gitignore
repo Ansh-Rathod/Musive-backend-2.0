@@ -12,3 +12,5 @@ init.js
 initDb.js
 songs.js
 users.js
+backup.sql
+data.sql

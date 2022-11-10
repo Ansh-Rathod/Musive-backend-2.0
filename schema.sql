@@ -32,3 +32,15 @@ create table public."Tracks"(
 alter table songs
 add constraint user_id_fk FOREIGN KEY (user_id) REFERENCES artists(id)
 match full on update CASCADE on delete CASCADE;
+
+create table public."Liked"(
+    id serial primary key,
+    track_id integer not null,
+    username varchar(28) not null
+);
+
+alter table public."Liked" add constraint track_id FOREIGN KEY(track_id)
+REFERENCES public."Tracks"(id) match full on update CASCADE on delete cascade;
+
+alter table public."Liked" add constraint user_id FOREIGN KEY(username)
+REFERENCES public."Users"(username) match full on update CASCADE on delete cascade;

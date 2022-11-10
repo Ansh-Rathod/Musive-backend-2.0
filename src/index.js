@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import "dotenv/config";
 import authRoute from "./routes/authRouter.js";
 import songsRoute from "./routes/songsRouter.js";
+import likedRoute from "./routes/like.js";
 import { corsConfig } from "./middlewares/session.js";
 import errorHandler from "./middlewares/error-handler.js";
 import artistsRoute from "./routes/artists.js";
@@ -21,12 +22,13 @@ app.use(cors(corsConfig));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(errorHandler);
-
 // initialize routes
 app.get("/", (req, res, next) => res.json("welcome to the api"));
 app.use("/api/auth", authRoute);
 app.use("/api/artists", artistsRoute);
 app.use("/api/songs", songsRoute);
+app.use("/api/collection", likedRoute);
+
+app.use(errorHandler);
 
 httpServer.listen(PORT);

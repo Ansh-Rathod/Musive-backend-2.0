@@ -8,6 +8,7 @@ import likedRoute from "./routes/like.js";
 import { corsConfig } from "./middlewares/session.js";
 import errorHandler from "./middlewares/error-handler.js";
 import artistsRoute from "./routes/artists.js";
+import collectionsRoute from "./routes/collection.js";
 import helmet from "helmet";
 import cors from "cors";
 
@@ -24,10 +25,13 @@ app.use(express.json());
 
 // initialize routes
 app.get("/", (req, res, next) => res.json("welcome to the api"));
+
 app.use("/api/auth", authRoute);
 app.use("/api/artists", artistsRoute);
 app.use("/api/songs", songsRoute);
-app.use("/api/collection", likedRoute);
+app.use("/api", likedRoute);
+
+app.use("/api/collections", collectionsRoute);
 
 app.use(errorHandler);
 

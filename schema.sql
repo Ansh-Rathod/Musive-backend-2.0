@@ -44,3 +44,49 @@ REFERENCES public."Tracks"(id) match full on update CASCADE on delete cascade;
 
 alter table public."Liked" add constraint user_id FOREIGN KEY(username)
 REFERENCES public."Users"(username) match full on update CASCADE on delete cascade;
+
+create table public."Collections"(
+  id uuid PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4(),
+  name text not null,
+  username varchar(28) not null,
+  total_tracks integer DEFAULT 0
+)
+
+alter table public."Collections" add constraint user_id FOREIGN KEY(username)
+REFERENCES public."Users"(username) match full on update CASCADE on delete cascade;
+
+create table public."CollectionItems"(
+  collection_id uuid not null,
+  track_id integer not null
+);
+
+
+alter table public."CollectionItems" add constraint collection_id_fk FOREIGN KEY(collection_id)
+REFERENCES public."Collections"(id) match full on update CASCADE on delete cascade;
+
+alter table public."CollectionItems" add constraint track_id_fk FOREIGN KEY(track_id)
+REFERENCES public."Tracks"(id) match full on update CASCADE on delete cascade;
+
+
+CREATE OR REPLACE FUNCTION update_collections()
+  RETURNS trigger AS $$
+  DECLARE
+    BEGIN
+    IF TG_OP = 'INSERT' THEN
+      EXECUTE 'update public."Collections" set total_tracks=total_tracks+1 where id = $1;' 
+      USING NEW.collection_id;
+    END IF;
+
+    IF TG_OP='DELETE' THEN 
+      EXECUTE 'update public."Collections" set total_tracks=total_tracks-1 where id = $1;' 
+      USING OLD.collection_id;
+    END IF;
+    
+    RETURN NEW;
+    END;
+$$ LANGUAGE plpgsql;
+
+  
+CREATE TRIGGER update_collection
+AFTER INSERT OR DELETE ON public."CollectionItems"
+FOR EACH ROW EXECUTE PROCEDURE update_collections();

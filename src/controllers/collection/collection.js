@@ -82,3 +82,13 @@ export const deleteCollection = asyncHandler(async (req, res, next) => {
   await pool.query(`delete from "Collections" where id=$1;`, [req.params.id]);
   res.status(200).send({ success: true });
 });
+
+export const addToCollection = asyncHandler(async (req, res, next) => {
+  const { collection_id, track_id } = req.body;
+  await pool.query(
+    `insert into "CollectionItems" (track_id,collection_id) values ($1,$2);`,
+    [track_id, collection_id]
+  );
+  console.log("done");
+  res.status(200).send({ success: true });
+});

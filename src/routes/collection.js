@@ -4,6 +4,7 @@ import {
   createNewCollection,
   getCollectionsList,
   deleteCollection,
+  addToCollection,
 } from "../controllers/collection/collection.js";
 const router = express.Router();
 
@@ -11,6 +12,7 @@ router.use(verifyToken);
 
 router.get("/mylists", getCollectionsList);
 router.post("/new", createNewCollection);
+router.put("/add/track", addToCollection);
 router.delete("/:id", deleteCollection);
 
 export default router;

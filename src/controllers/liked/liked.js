@@ -12,7 +12,11 @@ export const getLikedTracksId = asyncHandler(async (req, res, next) => {
 
 export const getLikedTracks = asyncHandler(async (req, res, next) => {
   const { rows } = await pool.query(
-    `select track_id from public."Liked" where username = $1;`,
+    `select public."Tracks".id,duration,track_name,src,cover_image,
+       display_name as artist_name,public."Artists".id as artist_id from 
+       public."Tracks" left join public."Artists" on 
+       public."Tracks".user_id = public."Artists".id
+       where public."Tracks".id in (select track_id from public."Liked" where username = $1);`,
     [req.username]
   );
   res.status(200).send({ success: true, data: rows });

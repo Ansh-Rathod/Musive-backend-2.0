@@ -1,10 +1,10 @@
 import pg from "pg";
+dotenv.config({ path: "../.env" });
 
 const Pool = pg.Pool;
 
 const pool = new Pool({
-  connectionString:
-    "postgresql://postgres:cuXgA7afTRqLxsa7@db.rmdijudagjncbpuymmdh.supabase.co:5432/postgres",
+  connectionString: process.env.DB_URL,
   ssl: {
     rejectUnauthorized: false,
   },

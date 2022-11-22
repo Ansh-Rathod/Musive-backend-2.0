@@ -9,9 +9,10 @@ package-lock.json
 
 init.js
 /data
-initDb.js
 songs.js
 users.js
 backup.sql
 data.sql
 tracks.js
+artists.js
+ids.js

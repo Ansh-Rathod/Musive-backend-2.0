@@ -8,7 +8,7 @@ import likedRoute from "./routes/like.js";
 import { corsConfig } from "./middlewares/session.js";
 import errorHandler from "./middlewares/error-handler.js";
 import artistsRoute from "./routes/artists.js";
-import { initDb } from "./initDb.js";
+
 import collectionsRoute from "./routes/collection.js";
 import helmet from "helmet";
 import cors from "cors";

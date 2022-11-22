@@ -9,7 +9,7 @@ export const genrateJwt = (username) => {
     },
     process.env.TOKENKEY,
     {
-      expiresIn: "24h",
+      expiresIn: "30d",
     }
   );
   return token;

@@ -27,10 +27,6 @@ app.use(express.json());
 // initialize routes
 app.get("/", (req, res, next) => res.json("welcome to the api"));
 
-app.use("/initDb", async (req, res, next) => {
-  await initDb();
-  res.send("All done!");
-});
 app.use("/api/auth", authRoute);
 app.use("/api/artists", artistsRoute);
 app.use("/api/songs", songsRoute);

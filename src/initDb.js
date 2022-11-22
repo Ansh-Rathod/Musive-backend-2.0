@@ -47,7 +47,7 @@ export async function initDb() {
 async function addArtistDataToTable() {
   console.log("Started Adding artists.. ");
 
-  for (let i = 0; i <= artists.length; i++) {
+  for (let i = 0; i < artists.length; i++) {
     await pool.query(
       `insert into public."Artists"
        (id, username, display_name, avatar, gender)
@@ -66,7 +66,7 @@ async function addArtistDataToTable() {
 
 async function addSongsToDb() {
   console.log("Started Adding tracks.. ");
-  for (let i = 0; i <= tracks.length; i++) {
+  for (let i = 0; i < tracks.length; i++) {
     await pool.query(
       `insert into public."Tracks"
        (  id,
@@ -92,7 +92,7 @@ async function addSongsToDb() {
         tracks[i].movements,
         tracks[i].keywords,
         tracks[i].duration,
-        tracks[i].name,
+        tracks[i].track_name,
         tracks[i].download_url,
         tracks[i].src,
         tracks[i].cover_image,

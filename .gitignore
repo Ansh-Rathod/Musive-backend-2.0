@@ -11,8 +11,8 @@ init.js
 /data
 songs.js
 users.js
-backup.sql
 data.sql
 tracks.js
 artists.js
 ids.js
+src/initDb.js

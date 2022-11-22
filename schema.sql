@@ -3,6 +3,7 @@ create table Users(
     username varchar(28) not null unique,
     passhash varchar not null
 );
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 create table public."Artists"(
   id integer unique not null, 
@@ -77,7 +78,7 @@ CREATE OR REPLACE FUNCTION update_collections()
       USING NEW.collection_id;
     END IF;
 
-    IF TG_OP='DELETE' THEN 
+    IF TG_OP = 'DELETE' THEN 
       EXECUTE 'update public."Collections" set total_tracks=total_tracks-1 where id = $1;' 
       USING OLD.collection_id;
     END IF;
@@ -90,3 +91,5 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER update_collection
 AFTER INSERT OR DELETE ON public."CollectionItems"
 FOR EACH ROW EXECUTE PROCEDURE update_collections();
+
+-- pg_dump -U postgres -h containers-us-west-63.railway.app -p 7771 railway >> sqlfile.sql

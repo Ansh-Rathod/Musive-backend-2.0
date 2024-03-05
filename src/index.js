@@ -20,7 +20,7 @@ const httpServer = createServer(app);
 const PORT = process.env.PORT || 4444;
 
 app.use(helmet());
-app.use(cors(corsConfig));
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

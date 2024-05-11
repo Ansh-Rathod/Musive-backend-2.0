@@ -1,17 +1,16 @@
-import express from "express";
-import { createServer } from "http";
 import dotenv from "dotenv";
 import "dotenv/config";
-import authRoute from "./routes/authRouter.js";
-import songsRoute from "./routes/songsRouter.js";
-import likedRoute from "./routes/like.js";
-import { corsConfig } from "./middlewares/session.js";
+import express from "express";
+import { createServer } from "http";
 import errorHandler from "./middlewares/error-handler.js";
 import artistsRoute from "./routes/artists.js";
+import authRoute from "./routes/authRouter.js";
+import likedRoute from "./routes/like.js";
+import songsRoute from "./routes/songsRouter.js";
 
-import collectionsRoute from "./routes/collection.js";
-import helmet from "helmet";
 import cors from "cors";
+import helmet from "helmet";
+import collectionsRoute from "./routes/collection.js";
 
 dotenv.config({ path: "../.env" });
 const app = express();
@@ -23,11 +22,10 @@ app.use(helmet());
 app.use(cors());
 
 app.use(function (req, res, next) {
-    //Enabling CORS
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-      next();
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 app.use(express.urlencoded({ extended: true }));
